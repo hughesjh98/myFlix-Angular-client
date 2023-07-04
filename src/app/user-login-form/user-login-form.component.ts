@@ -32,7 +32,7 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((data) => {
       
-      localStorage.setItem("user", JSON.stringify(data.user.Username))
+      localStorage.setItem("user", JSON.stringify(data.user))
       localStorage.setItem("token", data.token);
       this.router.navigate(['movies']);
 

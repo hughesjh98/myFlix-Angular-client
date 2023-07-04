@@ -1,23 +1,34 @@
-<mat-grid-list cols="4">
+<app-navigation></app-navigation>
+<mat-grid-list cols="3" rowSize="25px" colSize="25px">
     <mat-grid-tile *ngFor=" let movie of movies; let i= index;" >
         <mat-card>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle> Directed by: {{movie.Directors.Name}} </mat-card-subtitle>
             <img mat-card-image src="{{movie.ImagePath}}" alt="{{movie.Title}}">
             <mat-card-actions>
-                <button mat-button color="primary">
-                    Genre
+
+                <button mat-button matTooltip="Genre">
+                    <mat-icon>theater_comedy</mat-icon>
                 </button>
 
-                <button mat-button color="primary">
-                    Director
+                <button mat-button matTooltip="Director">
+                    <mat-icon>person</mat-icon>
                 </button>
 
-                <button mat-button color="primary">
-                    synopsis
+                <button mat-button matTooltip="synopsis">
+                    <mat-icon>description</mat-icon>
                 </button>
 
+                <button *ngIf="!isFavorite(movie._id)" mat-icon-button (click)="addFavorite(movie._id)" 
+                matTooltip="Add to favorites">
                 <mat-icon>favorite_border</mat-icon>
+              </button>
+
+              <button *ngIf="isFavorite(movie._id)" mat-icon-button (click)="removeFavorite(movie._id)" 
+                matTooltip="Remove from favorites">
+                <mat-icon>favorite</mat-icon>
+                </button>
+
             </mat-card-actions>
         </mat-card>
     </mat-grid-tile>
