@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MovieInfoComponent } from '../movie-info/movie-info.component';
 
 
 
@@ -27,6 +28,33 @@ export class MovieCardComponent {
       this.movies = response;
       console.log(this.movies);
       return this.movies;
+    })
+  }
+
+  getGenre(name: string, description: string): void {
+    this.dialog.open(MovieInfoComponent, {
+      data: {
+        title: name,
+        content: description,
+      }
+    })
+  }
+
+  getDirector(name: string, bio: string): void {
+    this.dialog.open(MovieInfoComponent, {
+      data: {
+        title: name,
+        content: bio,
+      }
+    })
+  }
+
+  getSynopsis( description: string): void {
+    this.dialog.open(MovieInfoComponent, {
+      data: {
+        title: "Description",
+        content: description,
+      }
     })
   }
 
