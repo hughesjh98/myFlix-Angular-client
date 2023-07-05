@@ -21,6 +21,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MovieInfoComponent } from './movie-info/movie-info.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    NavigationComponent
+    NavigationComponent,
+    MovieInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatGridListModule,
     MatToolbarModule,
     MatTooltipModule,
+    
   
 
   ],
