@@ -7,15 +7,15 @@
             <img mat-card-image src="{{movie.ImagePath}}" alt="{{movie.Title}}">
             <mat-card-actions>
 
-                <button mat-button matTooltip="Genre">
+                <button mat-button (click)="getGenre(movie.Genre.Name, movie.Genre.Description)"  matTooltip="Genre">
                     <mat-icon>theater_comedy</mat-icon>
                 </button>
 
-                <button mat-button matTooltip="Director">
+                <button mat-button (click)="getDirector(movie.Directors.Name, movie.Directors.Bio)" matTooltip="Director">
                     <mat-icon>person</mat-icon>
                 </button>
 
-                <button mat-button matTooltip="synopsis">
+                <button mat-button (click)="getSynopsis(movie.Description)" matTooltip="synopsis">
                     <mat-icon>description</mat-icon>
                 </button>
 
