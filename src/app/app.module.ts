@@ -13,6 +13,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
+import {MatListModule} from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
     MovieCardComponent,
     WelcomePageComponent,
     NavigationComponent,
-    MovieInfoComponent
+    MovieInfoComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
     MatGridListModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatListModule,
     
   
 
