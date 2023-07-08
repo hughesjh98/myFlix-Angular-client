@@ -32,17 +32,8 @@ export class FetchApiDataService {
 
   //get all of the users 
   getOneUser(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http.get(apiUrl + 'users/' + user.Username, {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
+    const user = JSON.parse(localStorage.getItem('user') || '{ }');
+    return user;
   }
 
   //edit the users profile and update information
@@ -97,7 +88,7 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     user.FavoriteMovies.push(movieID);
     localStorage.setItem('user', JSON.stringify(user));
-    
+
     return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieID, {}, {
       headers: new HttpHeaders(
         {
@@ -120,8 +111,8 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     const index = user.FavoriteMovies.indexOf(movieID);
-    if (index > -1) { 
-      user.FavoriteMovies.splice(index, 1); 
+    if (index > -1) {
+      user.FavoriteMovies.splice(index, 1);
     }
 
     localStorage.setItem('user', JSON.stringify(user));
@@ -131,7 +122,7 @@ export class FetchApiDataService {
         {
           Authorization: 'Bearer ' + token,
         }),
-        responseType:"text"
+      responseType: "text"
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
