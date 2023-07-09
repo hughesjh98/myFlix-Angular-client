@@ -32,15 +32,24 @@ export class FetchApiDataService {
 
   //get all of the users 
   getOneUser(): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{ }');
-    return user;
+    const username = localStorage.getItem('Username');
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'users/' + username, {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
   }
 
   //edit the users profile and update information
   editUser(updatedUser: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http.put(apiUrl + 'users/' + user.Username, updatedUser, {
+    const username = localStorage.getItem('Username');
+    return this.http.put(apiUrl + 'users/' + username, updatedUser, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -54,15 +63,16 @@ export class FetchApiDataService {
   //delete the users account 
   deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http.delete(apiUrl + 'users/' + user._id, {
+    const username = localStorage.getItem('Username')
+    return this.http.delete(apiUrl + 'users/' + username, {
       headers: new HttpHeaders(
         {
+
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
       map(this.extractResponseData),
-      catchError(this.handleError)
+      catchError(this.handleError),
     );
   }
 
@@ -192,12 +202,17 @@ export class FetchApiDataService {
   }
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
+      console.log(error);
+      console.log(error.error);
       console.error('Some error occurred:', error.error.message);
     } else {
+      console.log(error);
+      console.log(error.error);
       console.error(
         `Error Status code ${error.status}, ` +
         `Error body is: ${error.error}`);
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(() =>
+      new Error('Something bad happened; please try again later.'));
   }
 }
