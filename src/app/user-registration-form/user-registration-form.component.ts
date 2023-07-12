@@ -6,6 +6,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
