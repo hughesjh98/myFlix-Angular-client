@@ -5,8 +5,8 @@
     </mat-progress-spinner>
 </div>
 
-<mat-grid-list cols="3" rowSize="25px" colSize="25px">
-    <mat-grid-tile *ngFor=" let movie of movies; let i= index;">
+<div class="movie-grid">
+    <div class="movie-grid-items" *ngFor=" let movie of movies; let i= index;">
         <mat-card>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle> Directed by: {{movie.Directors.Name}} </mat-card-subtitle>
@@ -38,5 +38,5 @@
 
             </mat-card-actions>
         </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+</div>
