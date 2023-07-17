@@ -8,6 +8,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MovieInfoComponent implements OnInit {
 
+/**
+ * 
+ * @param {string} data
+ * use @inject to add data from the movie object into the dialog modal in the movie-info-componenent.html.
+ * 
+ */
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {

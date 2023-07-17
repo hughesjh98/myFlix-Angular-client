@@ -32,6 +32,10 @@ export class UserProfileComponent implements OnInit {
   }
 
 
+ /**
+  *  get user will get all of the users data so we can display it. 
+  *  get all movies will filter all of the movies id that are in the favorite movies array. 
+ */
 
   getUser(): void {
     this.fetchApiData.getOneUser().subscribe((response: any) => {
@@ -47,11 +51,14 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * edit user will take the new user data and send it back to the db and set the localstorage 
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((data) => {
       localStorage.setItem('user', JSON.stringify(data));
       localStorage.setItem('Username', data.Username);
-      console.log(data);
+      // console.log(data);
       this.snackBar.open('User has been updated', 'OK', {
         duration: 2000
       })
@@ -62,6 +69,10 @@ export class UserProfileComponent implements OnInit {
       })
     });
   }
+
+  /**
+   *  delete user will delete their account permanently and be sent back to the welcome screen
+   */
 
   deleteUser(): void {
     if (confirm('are you sure?')) {
@@ -75,7 +86,7 @@ export class UserProfileComponent implements OnInit {
         );
       });
       this.fetchApiData.deleteUser().subscribe((result) => {
-        console.log(result);
+        // console.log(result);
         localStorage.clear();
       });
     }

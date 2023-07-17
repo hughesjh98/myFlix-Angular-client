@@ -7,7 +7,6 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { R3PartialDeclaration } from '@angular/compiler';
 
 
 
@@ -29,14 +28,19 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /**
+   * on login token, userdata, and Username will be stored in localstorage. 
+   * user will be sent to the movie page 
+   */
+
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((data) => {
       
       localStorage.setItem("user", JSON.stringify(data.user))
       localStorage.setItem("token", data.token);
       localStorage.setItem('Username', data.user.Username)
+
       this.router.navigate(['movies']);
-      
       this.dialogRef.close();
       this.snackBar.open('you\'ve been logged in', 'OK', {
         duration: 2000

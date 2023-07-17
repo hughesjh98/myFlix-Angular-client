@@ -12,13 +12,16 @@ import { MovieInfoComponent } from '../movie-info/movie-info.component';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+
   movies: any[] = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
   ) { }
 
+  //once the page loads getMovies() will fetch all of the movies and store them in the movies array.
   ngOnInit(): void {
     this.getMovies();
   }
@@ -26,10 +29,17 @@ export class MovieCardComponent {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
-      console.log(this.movies);
+      // console.log(this.movies);
       return this.movies;
     })
   }
+
+  /**
+   * 
+   * @param name 
+   * @param description 
+   * param data will be passed into the dialog when opened.
+   */
 
   getGenre(name: string, description: string): void {
     this.dialog.open(MovieInfoComponent, {
@@ -40,6 +50,13 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+ * 
+ * @param name 
+ * @param bio 
+ *  param data will be passed into the dialog when opened.
+ */
+
   getDirector(name: string, bio: string): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
@@ -49,7 +66,13 @@ export class MovieCardComponent {
     })
   }
 
-  getSynopsis( description: string): void {
+  /**
+ * 
+ * @param description 
+ * param data will be passed into the dialog when opened.
+ */
+
+  getSynopsis(description: string): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
         title: "Description",
@@ -58,10 +81,18 @@ export class MovieCardComponent {
     })
   }
 
+
+  /**
+   * 
+   * @param {string} id 
+   * movies will be added/deleted to the users favorite movie array. 
+   * isFavorite is created to check if the movie has been added. 
+   */
+
   addFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovie(id).subscribe((Response: any) => {
       this.snackBar.open('added to favorites', 'OK', {
-        duration: 2000 
+        duration: 2000
       })
     })
   }
@@ -73,7 +104,7 @@ export class MovieCardComponent {
   removeFavorite(id: string): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe((Response: any) => {
       this.snackBar.open('removed to favorites', 'OK', {
-        duration: 2000 
+        duration: 2000
       })
     })
   }
