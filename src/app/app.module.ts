@@ -56,8 +56,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatListModule,
     MatProgressSpinnerModule,
     
-  
-
   ],
   providers: [],
   bootstrap: [AppComponent]
